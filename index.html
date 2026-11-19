@@ -3,120 +3,251 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roman Halkin — Automatisations pour artisans du bâtiment</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d2430'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ERH%3C/text%3E%3C/svg%3E">
+<title>Roman Halkin — Automatisation des devis et factures pour artisans du bâtiment</title>
+<meta name="description" content="Relance automatique des devis, factures fournisseurs prêtes pour le comptable, demandes d'avis Google. Installé dans votre Gmail et votre Google Sheets. Seine-et-Marne, Île-de-France.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314181f'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='27' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ERH%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Roman Halkin — Automatisations pour artisans du bâtiment">
-<meta property="og:description" content="Relance automatique des devis, factures rangées pour le comptable, avis Google après chantier. Dans votre Gmail et Google Sheets.">
-<meta property="og:image" content="https://i.ytimg.com/vi/vUhu5K_jcNg/hqdefault.jpg">
+<meta property="og:title" content="Roman Halkin — Automatisation des devis et factures pour artisans">
+<meta property="og:description" content="Vos devis relancés à temps, vos factures prêtes pour le comptable. Dans votre Gmail et votre Google Sheets.">
+<meta property="og:image" content="https://halkinwork.github.io/img/tableau.png">
 <meta property="og:url" content="https://halkinwork.github.io/">
-<link rel="canonical" href="https://halkinwork.github.io/"><meta name="description" content="Relance automatique des devis, factures rangées pour le comptable, avis Google après chantier. Dans votre Gmail et Google Sheets. Île-de-France.">
+<link rel="canonical" href="https://halkinwork.github.io/">
 <style>
-  :root { --bg:#fbfaf7; --ink:#1d2430; --muted:#5b6472; --line:#e4e1d8; --accent:#c4561e; --card:#ffffff; }
+  @font-face { font-family:"Plex"; src:url("fonts/plex-sans-400.woff2") format("woff2"); font-weight:400 600; font-display:swap; }
+  :root { --ink:#14181f; --text:#2b313b; --muted:#5d6572; --line:#e2e4e8; --soft:#f4f5f7; --bg:#ffffff; --accent:#1f4b7a; --accent-ink:#ffffff; }
   * { box-sizing:border-box; }
-  body { margin:0; font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
-  .wrap { max-width:760px; margin:0 auto; padding:0 18px; }
-  header { padding:36px 0 18px; }
-  .kicker { color:var(--accent); font-weight:600; letter-spacing:.02em; font-size:14px; text-transform:uppercase; }
-  h1 { font-size:clamp(28px,6vw,42px); line-height:1.15; margin:8px 0 12px; }
-  .lead { color:var(--muted); font-size:18px; margin:0 0 20px; }
-  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 8px; }
-  .btn { display:inline-block; padding:13px 18px; border-radius:10px; text-decoration:none; font-weight:600; }
-  .btn.primary { background:var(--accent); color:#fff; }
-  .btn.ghost { border:1.5px solid var(--ink); color:var(--ink); }
-  .video { margin:22px 0 8px; aspect-ratio:16/9; background:#e9e6de; border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--muted); }
-  .video iframe { width:100%; height:100%; border:0; border-radius:12px; }
-  section { padding:22px 0; border-top:1px solid var(--line); }
-  h2 { font-size:22px; margin:0 0 12px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:0 0 12px; }
-  .card h3 { margin:0 0 6px; font-size:19px; }
-  .card ul { margin:6px 0 10px; padding-left:20px; }
-  .price { font-weight:700; }
-  .pilot { background:#fff4ec; border-color:#f0c9ad; }
-  ol.steps { padding-left:20px; margin:0; }
-  ol.steps li { margin:0 0 8px; }
-  footer { padding:24px 0 40px; color:var(--muted); font-size:14px; border-top:1px solid var(--line); }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16.5px/1.6 "Plex", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  /* header */
+  .top { border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:5; }
+  .top .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; gap:16px; }
+  .brand { text-decoration:none; color:var(--ink); line-height:1.2; }
+  .brand b { display:block; font-weight:600; font-size:16px; letter-spacing:.01em; }
+  .brand span { font-size:12.5px; color:var(--muted); }
+  nav { display:flex; align-items:center; gap:26px; font-size:14.5px; }
+  nav a { color:var(--text); text-decoration:none; }
+  nav a:hover { color:var(--accent); }
+  nav .tel { white-space:nowrap; font-weight:600; color:var(--ink); border:1px solid var(--line); padding:7px 12px; border-radius:6px; }
+  @media (max-width:820px){ nav a:not(.tel){ display:none; } }
+  /* hero */
+  .hero { padding:64px 0 56px; border-bottom:1px solid var(--line); }
+  .hero-text { max-width:760px; }
+  .hero .shot { margin-top:44px; }
+  .eyebrow { font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 14px; }
+  h1 { font-size:clamp(30px,4.2vw,44px); line-height:1.12; letter-spacing:-.015em; color:var(--ink); margin:0 0 18px; font-weight:600; }
+  .lead { font-size:18px; color:var(--text); margin:0 0 28px; max-width:34em; }
+  .actions { display:flex; flex-wrap:wrap; gap:12px; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:6px; font-weight:500; text-decoration:none; font-size:15.5px; border:1px solid transparent; }
+  .btn.primary { background:var(--accent); color:var(--accent-ink); }
+  .btn.primary:hover { background:#173a60; }
+  .btn.line { border-color:#c9cdd3; color:var(--ink); }
+  .btn.line:hover { border-color:var(--ink); }
+  .who { margin:22px 0 0; font-size:14px; color:var(--muted); }
+  .shot { margin:0; border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,31,.05), 0 12px 32px -12px rgba(20,24,31,.18); background:#fff; }
+  .shot .bar { height:26px; background:var(--soft); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:6px; padding:0 10px; }
+  .shot .bar i { width:9px; height:9px; border-radius:50%; background:#d5d8dd; display:block; }
+  .shot img { display:block; width:100%; height:auto; }
+  .caption { font-size:13px; color:var(--muted); margin-top:10px; }
+  @media (max-width:860px){ .hero { padding:40px 0; } .hero .shot { margin-top:28px; } }
+  /* sections */
+  section { padding:72px 0; border-bottom:1px solid var(--line); }
+  section.alt { background:var(--soft); }
+  h2 { font-size:clamp(24px,3vw,30px); line-height:1.2; letter-spacing:-.01em; color:var(--ink); margin:0 0 10px; font-weight:600; }
+  .intro { color:var(--muted); margin:0 0 36px; max-width:40em; }
+  /* demo */
+  .video { position:relative; display:block; width:100%; max-width:760px; aspect-ratio:16/9; border-radius:8px; overflow:hidden; background:#111 center/cover no-repeat; border:0; padding:0; cursor:pointer; margin:0 0 48px; }
+  .video .play { position:absolute; left:20px; bottom:20px; background:rgba(255,255,255,.95); color:var(--ink); font:500 15px/1 "Plex",system-ui,sans-serif; padding:12px 16px; border-radius:6px; }
+  .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .steps3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .steps3 .num { font-size:13px; color:var(--muted); font-weight:500; letter-spacing:.04em; }
+  .steps3 h3 { font-size:17px; color:var(--ink); margin:4px 0 6px; font-weight:600; }
+  .steps3 p { margin:0 0 14px; font-size:15px; }
+  @media (max-width:860px){ .steps3 { grid-template-columns:1fr; } }
+  /* pricing */
+  table.prices { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:15px; }
+  .prices th, .prices td { text-align:left; vertical-align:top; padding:18px 20px; border-bottom:1px solid var(--line); }
+  .prices thead th { font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:500; background:var(--soft); }
+  .prices tbody tr:last-child td { border-bottom:0; }
+  .prices td.name { font-weight:600; color:var(--ink); width:22%; }
+  .prices td.num { white-space:nowrap; font-weight:500; color:var(--ink); width:14%; }
+  .note { font-size:13.5px; color:var(--muted); margin:14px 0 0; }
+  @media (max-width:700px){
+    .prices thead { display:none; }
+    .prices tr { display:block; border-bottom:1px solid var(--line); padding:14px 16px; }
+    .prices td { display:block; border:0; padding:2px 0; width:auto !important; }
+    .prices td.num::before { content:attr(data-l) " : "; color:var(--muted); font-weight:400; }
+  }
+  .pilot { margin-top:28px; border:1px solid #c9d6e4; background:#f3f7fb; border-radius:8px; padding:20px 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; }
+  .pilot p { margin:0; max-width:46em; }
+  /* method + faq */
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  @media (max-width:860px){ .two { grid-template-columns:1fr; gap:40px; } }
+  ol.method { list-style:none; counter-reset:m; padding:0; margin:0; }
+  ol.method li { counter-increment:m; position:relative; padding:0 0 22px 44px; }
+  ol.method li::before { content:counter(m); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%; border:1px solid #c9cdd3; color:var(--ink); font-size:14px; font-weight:500; display:flex; align-items:center; justify-content:center; }
+  ol.method b { color:var(--ink); font-weight:600; display:block; }
+  details { border-top:1px solid var(--line); padding:14px 0; }
+  details:last-of-type { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; font-weight:500; color:var(--ink); list-style:none; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; float:right; color:var(--muted); }
+  details[open] summary::after { content:"–"; }
+  details p { margin:8px 0 0; font-size:15px; }
+  /* contact */
+  .contact { display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:start; }
+  .contact .card { border:1px solid var(--line); border-radius:8px; padding:24px; background:#fff; }
+  .contact .big { font-size:24px; font-weight:600; color:var(--ink); text-decoration:none; display:block; margin:4px 0 14px; }
+  .contact dl { margin:0; font-size:15px; }
+  .contact dt { color:var(--muted); font-size:13px; margin-top:12px; }
+  .contact dd { margin:2px 0 0; }
+  @media (max-width:860px){ .contact { grid-template-columns:1fr; gap:28px; } }
+  footer { padding:28px 0 40px; font-size:13.5px; color:var(--muted); }
+  footer .wrap { display:flex; flex-wrap:wrap; gap:12px 28px; justify-content:space-between; }
   footer a { color:var(--muted); }
-  .sticky { position:sticky; bottom:0; background:rgba(251,250,247,.96); border-top:1px solid var(--line); padding:10px 0; display:none; }
-  @media (max-width:600px){ .sticky{ display:block; } .sticky .cta{ justify-content:center; margin:0; } footer{ padding-bottom:90px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <div class="kicker">Artisans du bâtiment · Île-de-France</div>
-  <h1>Moins d'administratif, plus de chantiers</h1>
-  <p class="lead">J'installe de petites automatisations <strong>dans votre propre Gmail et Google Sheets</strong> : vos devis sont relancés tout seuls, vos factures sont rangées pour le comptable. Pas de nouveau logiciel à apprendre.</p>
-  <div class="cta">
-    <a class="btn primary" href="tel:+33762232025">Appeler : 07 62 23 20 25</a>
-    <a class="btn ghost" href="mailto:roman.halkin.d@gmail.com?subject=Automatisation%20des%20devis">Écrire un e-mail</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><b>Roman Halkin</b><span>Automatisation administrative · artisans du bâtiment</span></a>
+    <nav>
+      <a href="#demo">Démonstration</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#methode">Méthode</a>
+      <a href="#contact">Contact</a>
+      <a class="tel" href="tel:+33762232025">07 62 23 20 25</a>
+    </nav>
   </div>
-  <a class="video" id="video" href="https://youtu.be/vUhu5K_jcNg" target="_blank" rel="noopener" style="position:relative;overflow:hidden;text-decoration:none">
-    <img src="https://i.ytimg.com/vi/vUhu5K_jcNg/hqdefault.jpg" alt="Démo Devis sans oubli (1 minute)" style="width:100%;height:100%;object-fit:cover;border-radius:12px">
-    <span style="position:absolute;inset:auto 0 0 0;padding:12px 16px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-weight:600;border-radius:0 0 12px 12px">▶ Voir la démo (1 minute)</span>
-  </a>
 </header>
 
-<section>
-  <h2>Trois outils, au choix</h2>
-  <div class="card">
-    <h3>1. Devis sans oubli</h3>
-    <p>La relance des devis se fait toute seule.</p>
-    <ul>
-      <li>Chaque demande (formulaire ou e-mail) arrive dans un tableau.</li>
-      <li>Le client reçoit tout de suite un accusé de réception.</li>
-      <li>Devis sans réponse : relance automatique et polie à 3 jours, puis à 7 jours.</li>
-      <li>Chaque matin, un résumé : relances parties, clients qui ont répondu, devis à envoyer.</li>
-    </ul>
-    <span class="price">390 €</span> l'installation + <span class="price">29 €/mois</span>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="eyebrow">Seine-et-Marne · Île-de-France</p>
+      <h1>Vos devis relancés à temps, vos factures prêtes pour le comptable.</h1>
+      <p class="lead">J'installe ces automatismes dans votre propre Gmail et votre Google Sheets. Vous continuez à travailler avec les outils que vous connaissez, et vos données restent dans votre compte.</p>
+      <div class="actions">
+        <a class="btn primary" href="#demo">Voir la démonstration</a>
+        <a class="btn line" href="tel:+33762232025">Appeler le 07 62 23 20 25</a>
+      </div>
+      <p class="who">Pour électriciens, plombiers, chauffagistes et entreprises de rénovation.</p>
+    </div>
+    <figure class="shot">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <img src="img/tableau.png" width="1920" height="367" alt="Tableau de suivi des devis dans Google Sheets : demandes, statut, relances">
+    </figure>
+    <p class="caption">Le tableau de suivi des devis, sur un compte de démonstration : chaque demande, son statut et les relances parties.</p>
   </div>
-  <div class="card">
-    <h3>2. Factures → compta</h3>
-    <p>Les factures fournisseurs rangées et prêtes pour le comptable.</p>
-    <ul>
-      <li>Les factures PDF reçues par e-mail sont lues : fournisseur, numéro, date, HT, TVA, TTC.</li>
-      <li>Classées dans Google Drive par mois, avec un nom clair ; contrôle des doublons.</li>
-      <li>Chaque mois, le comptable reçoit le tableau et le lien vers les PDF.</li>
-    </ul>
-    <span class="price">290 €</span> l'installation + <span class="price">19 €/mois</span>
-  </div>
-  <div class="card">
-    <h3>3. Avis après chantier</h3>
-    <p>Chantier terminé et payé : le client reçoit une demande d'avis avec le lien direct vers votre fiche Google.</p>
-    <span class="price">190 €</span> l'installation
+</div>
+
+<section id="demo">
+  <div class="wrap">
+    <h2>Comment ça marche</h2>
+    <p class="intro">Exemple réel avec l'outil « Devis sans oubli », sur un compte de démonstration. La vidéo dure une minute.</p>
+    <button class="video" id="video" type="button" style="background-image:url('https://i.ytimg.com/vi/vUhu5K_jcNg/hqdefault.jpg')" aria-label="Lire la vidéo de démonstration">
+      <span class="play">▶ Lire la démonstration · 1 min</span>
+    </button>
+    <div class="steps3">
+      <div>
+        <div class="num">01</div>
+        <h3>Le client décrit son besoin</h3>
+        <p>Par un formulaire court ou par simple e-mail. Nom, téléphone, adresse du chantier et type de travaux arrivent dans votre tableau, sans rien recopier.</p>
+        <figure class="shot"><img src="img/formulaire.png" width="922" height="670" alt="Formulaire de demande de devis rempli par le client" loading="lazy"></figure>
+      </div>
+      <div>
+        <div class="num">02</div>
+        <h3>Le client reçoit un accusé de réception</h3>
+        <p>Il part tout de suite, à votre nom et avec votre signature. Vous recevez en même temps une alerte avec ses coordonnées.</p>
+        <figure class="shot"><img src="img/accuse-reception.png" width="1190" height="508" alt="E-mail d'accusé de réception envoyé au client" loading="lazy"></figure>
+      </div>
+      <div>
+        <div class="num">03</div>
+        <h3>Sans réponse, le devis est relancé</h3>
+        <p>Une relance courte et polie part 3 jours après l'envoi du devis, puis une seconde à 7 jours. Chaque matin, un résumé vous dit où en est chaque devis.</p>
+        <figure class="shot"><img src="img/relance.png" width="1114" height="605" alt="E-mail de relance envoyé au client trois jours après le devis" loading="lazy"></figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>Comment ça se passe</h2>
-  <ol class="steps">
-    <li><strong>Appel de 10 minutes</strong> : je vous montre l'outil sur une démo, vous me dites comment vous travaillez aujourd'hui.</li>
-    <li><strong>Installation à distance</strong> dans votre compte Google, avec vos textes et votre signature.</li>
-    <li><strong>Deux semaines de rodage</strong> : j'ajuste ce qui ne colle pas à votre façon de travailler.</li>
-  </ol>
-</section>
-
-<section>
-  <div class="card pilot">
-    <h3>Offre pilote — janvier 2027</h3>
-    <p>Je cherche <strong>2 entreprises pilotes</strong> : Devis sans oubli à <strong>190 € au lieu de 390 €</strong>, en échange d'un retour honnête après un mois.</p>
-    <a class="btn primary" href="tel:+33762232025">J'en parle à Roman</a>
+<section id="tarifs" class="alt">
+  <div class="wrap">
+    <h2>Prestations et tarifs</h2>
+    <p class="intro">Chaque outil peut être installé seul. Le suivi mensuel couvre les ajustements et les corrections ; il est sans engagement.</p>
+    <table class="prices">
+      <thead><tr><th>Prestation</th><th>Ce qui est inclus</th><th>Installation</th><th>Suivi mensuel</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Devis sans oubli</td><td>Enregistrement des demandes (formulaire et e-mail), accusé de réception, relances à J+3 et J+7, résumé quotidien.</td><td class="num" data-l="Installation">390 €</td><td class="num" data-l="Suivi">29 € / mois</td></tr>
+        <tr><td class="name">Factures → compta</td><td>Lecture des factures PDF reçues par e-mail (fournisseur, numéro, date, HT, TVA, TTC), classement dans Google Drive par mois, contrôle des doublons, envoi mensuel au comptable.</td><td class="num" data-l="Installation">290 €</td><td class="num" data-l="Suivi">19 € / mois</td></tr>
+        <tr><td class="name">Avis après chantier</td><td>Demande d'avis envoyée au client une fois le chantier terminé et payé, avec le lien direct vers votre fiche Google.</td><td class="num" data-l="Installation">190 €</td><td class="num" data-l="Suivi">sans abonnement</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Interventions à partir de janvier 2027. La facture est émise après l'installation.</p>
+    <div class="pilot">
+      <p><b>Offre pilote, janvier 2027.</b> Deux entreprises peuvent installer « Devis sans oubli » à 190 € au lieu de 390 €, en échange d'un retour détaillé après un mois d'utilisation.</p>
+      <a class="btn primary" href="#contact">Me contacter</a>
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>Vos données</h2>
-  <p>Vos tableaux et vos fichiers restent dans votre compte Google. Je travaille avec un accès minimal, protégé par double authentification, et je le retire à la fin de l'installation si vous le souhaitez.</p>
+<section id="methode">
+  <div class="wrap two">
+    <div>
+      <h2>Méthode</h2>
+      <p class="intro">Tout se fait à distance, sans interrompre vos chantiers.</p>
+      <ol class="method">
+        <li><b>Appel de 10 minutes</b>Je vous montre l'outil sur la démonstration et vous m'expliquez comment vous gérez vos devis aujourd'hui.</li>
+        <li><b>Installation dans votre compte Google</b>Avec vos propres textes, votre signature et vos délais de relance.</li>
+        <li><b>Deux semaines de rodage</b>J'ajuste ce qui ne correspond pas à votre façon de travailler.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Questions fréquentes</h2>
+      <p class="intro">&nbsp;</p>
+      <details><summary>Faut-il changer de logiciel ?</summary><p>Non. Les outils fonctionnent dans Gmail, Google Sheets et Google Drive, que vous utilisez déjà.</p></details>
+      <details><summary>Où sont stockées mes données ?</summary><p>Dans votre compte Google. J'utilise un accès limité, protégé par double authentification, et je le retire à la fin de l'installation si vous le souhaitez.</p></details>
+      <details><summary>Les messages partent-ils à mon nom ?</summary><p>Oui, depuis votre adresse, avec vos textes et votre signature. Vous les validez avant la mise en service.</p></details>
+      <details><summary>Et si je veux arrêter ?</summary><p>Le suivi mensuel est sans engagement. Les outils et les tableaux restent dans votre compte.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap contact">
+    <div>
+      <h2>Parlons de vos devis</h2>
+      <p class="intro">Je m'appelle Roman Halkin et j'habite à Champs-sur-Marne. Je conçois ces outils et je les installe moi-même, du premier appel jusqu'au rodage. Appelez-moi ou écrivez-moi pour une démonstration de 10 minutes.</p>
+    </div>
+    <div class="card">
+      <div class="caption" style="margin:0">Téléphone</div>
+      <a class="big" href="tel:+33762232025">07 62 23 20 25</a>
+      <dl>
+        <dt>E-mail</dt><dd><a href="mailto:roman.halkin.d@gmail.com?subject=Demande%20de%20d%C3%A9monstration">roman.halkin.d@gmail.com</a></dd>
+        <dt>Zone</dt><dd>Seine-et-Marne et Île-de-France, intervention à distance</dd>
+      </dl>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p><strong>Roman Halkin</strong> — Champs-sur-Marne (77). Entreprise individuelle en cours de création (début d'activité : janvier 2027) ; le numéro SIRET sera indiqué ici dès l'immatriculation.</p>
-  <p>Mentions légales : éditeur Roman Halkin, <a href="mailto:roman.halkin.d@gmail.com">roman.halkin.d@gmail.com</a> · hébergement GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, USA). Ce site n'utilise ni cookies ni statistiques ; la vidéo de démonstration est hébergée sur YouTube.</p>
+  <div class="wrap">
+    <span>© 2026 Roman Halkin · Champs-sur-Marne (77) · Entreprise individuelle en cours de création, début d'activité en janvier 2027</span>
+    <a href="mentions-legales.html">Mentions légales</a>
+  </div>
 </footer>
-</div>
-<div class="sticky"><div class="wrap"><div class="cta">
-  <a class="btn primary" href="tel:+33762232025">Appeler</a>
-  <a class="btn ghost" href="mailto:roman.halkin.d@gmail.com?subject=Automatisation%20des%20devis">E-mail</a>
-</div></div></div>
+
+<script>
+  document.getElementById('video').addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/vUhu5K_jcNg?autoplay=1&rel=0';
+    f.title = 'Démonstration Devis sans oubli';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture';
+    f.allowFullscreen = true;
+    this.innerHTML = ''; this.appendChild(f); this.style.cursor = 'default';
+  }, { once: true });
+</script>
 </body>
 </html>
