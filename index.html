@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman Halkin — Automatisations pour artisans du bâtiment</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d2430'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ERH%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roman Halkin — Automatisations pour artisans du bâtiment">
+<meta property="og:description" content="Relance automatique des devis, factures rangées pour le comptable, avis Google après chantier. Dans votre Gmail et Google Sheets.">
+<meta property="og:image" content="https://i.ytimg.com/vi/vUhu5K_jcNg/hqdefault.jpg">
+<meta property="og:url" content="https://halkinwork.github.io/">
+<link rel="canonical" href="https://halkinwork.github.io/"><meta name="description" content="Relance automatique des devis, factures rangées pour le comptable, avis Google après chantier. Dans votre Gmail et Google Sheets. Île-de-France.">
+<style>
+  :root { --bg:#fbfaf7; --ink:#1d2430; --muted:#5b6472; --line:#e4e1d8; --accent:#c4561e; --card:#ffffff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  .wrap { max-width:760px; margin:0 auto; padding:0 18px; }
+  header { padding:36px 0 18px; }
+  .kicker { color:var(--accent); font-weight:600; letter-spacing:.02em; font-size:14px; text-transform:uppercase; }
+  h1 { font-size:clamp(28px,6vw,42px); line-height:1.15; margin:8px 0 12px; }
+  .lead { color:var(--muted); font-size:18px; margin:0 0 20px; }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 8px; }
+  .btn { display:inline-block; padding:13px 18px; border-radius:10px; text-decoration:none; font-weight:600; }
+  .btn.primary { background:var(--accent); color:#fff; }
+  .btn.ghost { border:1.5px solid var(--ink); color:var(--ink); }
+  .video { margin:22px 0 8px; aspect-ratio:16/9; background:#e9e6de; border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--muted); }
+  .video iframe { width:100%; height:100%; border:0; border-radius:12px; }
+  section { padding:22px 0; border-top:1px solid var(--line); }
+  h2 { font-size:22px; margin:0 0 12px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:0 0 12px; }
+  .card h3 { margin:0 0 6px; font-size:19px; }
+  .card ul { margin:6px 0 10px; padding-left:20px; }
+  .price { font-weight:700; }
+  .pilot { background:#fff4ec; border-color:#f0c9ad; }
+  ol.steps { padding-left:20px; margin:0; }
+  ol.steps li { margin:0 0 8px; }
+  footer { padding:24px 0 40px; color:var(--muted); font-size:14px; border-top:1px solid var(--line); }
+  footer a { color:var(--muted); }
+  .sticky { position:sticky; bottom:0; background:rgba(251,250,247,.96); border-top:1px solid var(--line); padding:10px 0; display:none; }
+  @media (max-width:600px){ .sticky{ display:block; } .sticky .cta{ justify-content:center; margin:0; } footer{ padding-bottom:90px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Artisans du bâtiment · Île-de-France</div>
+  <h1>Moins d'administratif, plus de chantiers</h1>
+  <p class="lead">J'installe de petites automatisations <strong>dans votre propre Gmail et Google Sheets</strong> : vos devis sont relancés tout seuls, vos factures sont rangées pour le comptable. Pas de nouveau logiciel à apprendre.</p>
+  <div class="cta">
+    <a class="btn primary" href="tel:+33762232025">Appeler : 07 62 23 20 25</a>
+    <a class="btn ghost" href="mailto:roman.halkin.d@gmail.com?subject=Automatisation%20des%20devis">Écrire un e-mail</a>
+  </div>
+  <a class="video" id="video" href="https://youtu.be/vUhu5K_jcNg" target="_blank" rel="noopener" style="position:relative;overflow:hidden;text-decoration:none">
+    <img src="https://i.ytimg.com/vi/vUhu5K_jcNg/hqdefault.jpg" alt="Démo Devis sans oubli (1 minute)" style="width:100%;height:100%;object-fit:cover;border-radius:12px">
+    <span style="position:absolute;inset:auto 0 0 0;padding:12px 16px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-weight:600;border-radius:0 0 12px 12px">▶ Voir la démo (1 minute)</span>
+  </a>
+</header>
+
+<section>
+  <h2>Trois outils, au choix</h2>
+  <div class="card">
+    <h3>1. Devis sans oubli</h3>
+    <p>La relance des devis se fait toute seule.</p>
+    <ul>
+      <li>Chaque demande (formulaire ou e-mail) arrive dans un tableau.</li>
+      <li>Le client reçoit tout de suite un accusé de réception.</li>
+      <li>Devis sans réponse : relance automatique et polie à 3 jours, puis à 7 jours.</li>
+      <li>Chaque matin, un résumé : relances parties, clients qui ont répondu, devis à envoyer.</li>
+    </ul>
+    <span class="price">390 €</span> l'installation + <span class="price">29 €/mois</span>
+  </div>
+  <div class="card">
+    <h3>2. Factures → compta</h3>
+    <p>Les factures fournisseurs rangées et prêtes pour le comptable.</p>
+    <ul>
+      <li>Les factures PDF reçues par e-mail sont lues : fournisseur, numéro, date, HT, TVA, TTC.</li>
+      <li>Classées dans Google Drive par mois, avec un nom clair ; contrôle des doublons.</li>
+      <li>Chaque mois, le comptable reçoit le tableau et le lien vers les PDF.</li>
+    </ul>
+    <span class="price">290 €</span> l'installation + <span class="price">19 €/mois</span>
+  </div>
+  <div class="card">
+    <h3>3. Avis après chantier</h3>
+    <p>Chantier terminé et payé : le client reçoit une demande d'avis avec le lien direct vers votre fiche Google.</p>
+    <span class="price">190 €</span> l'installation
+  </div>
+</section>
+
+<section>
+  <h2>Comment ça se passe</h2>
+  <ol class="steps">
+    <li><strong>Appel de 10 minutes</strong> : je vous montre l'outil sur une démo, vous me dites comment vous travaillez aujourd'hui.</li>
+    <li><strong>Installation à distance</strong> dans votre compte Google, avec vos textes et votre signature.</li>
+    <li><strong>Deux semaines de rodage</strong> : j'ajuste ce qui ne colle pas à votre façon de travailler.</li>
+  </ol>
+</section>
+
+<section>
+  <div class="card pilot">
+    <h3>Offre pilote — janvier 2027</h3>
+    <p>Je cherche <strong>2 entreprises pilotes</strong> : Devis sans oubli à <strong>190 € au lieu de 390 €</strong>, en échange d'un retour honnête après un mois.</p>
+    <a class="btn primary" href="tel:+33762232025">J'en parle à Roman</a>
+  </div>
+</section>
+
+<section>
+  <h2>Vos données</h2>
+  <p>Vos tableaux et vos fichiers restent dans votre compte Google. Je travaille avec un accès minimal, protégé par double authentification, et je le retire à la fin de l'installation si vous le souhaitez.</p>
+</section>
+
+<footer>
+  <p><strong>Roman Halkin</strong> — Champs-sur-Marne (77). Entreprise individuelle en cours de création (début d'activité : janvier 2027) ; le numéro SIRET sera indiqué ici dès l'immatriculation.</p>
+  <p>Mentions légales : éditeur Roman Halkin, <a href="mailto:roman.halkin.d@gmail.com">roman.halkin.d@gmail.com</a> · hébergement GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, USA). Ce site n'utilise ni cookies ni statistiques ; la vidéo de démonstration est hébergée sur YouTube.</p>
+</footer>
+</div>
+<div class="sticky"><div class="wrap"><div class="cta">
+  <a class="btn primary" href="tel:+33762232025">Appeler</a>
+  <a class="btn ghost" href="mailto:roman.halkin.d@gmail.com?subject=Automatisation%20des%20devis">E-mail</a>
+</div></div></div>
+</body>
+</html>
